@@ -1,4 +1,4 @@
-import { getSong } from "./data.js";
+import { getSong } from "./data.mjs";
 
 export function getMostListenedSong(events) {
   const counts = {};
