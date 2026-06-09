@@ -5,8 +5,12 @@
 // You can't open the index.html file using a file:// URL.
 import { getUserIDs } from "./data.js";
 
+import { getMostListenedSong, getMostListenedArtist } from "./analysis.js";
+
 window.onload = () => {
   const select = document.getElementById("user-select");
+
+  const results = document.getElementById("results");
 
   getUserIDs().forEach((userID) => {
     const option = document.createElement("option");
@@ -19,6 +23,23 @@ window.onload = () => {
 
   select.addEventListener("change", (event) => {
     const userID = event.target.value;
-    console.log("Selected user ID:", userID);
+
+    const events = getListenEvents(userID);
+
+    if (events.length === 0) {
+      results.innerHTML = "<p>This user didn't listen to any songs.</p>";
+      return;
+    }
+
+    const song = getMostListenedSong(events);
+    const artist = getMostListenedArtist(events);
+
+    results.innerHTML = `
+      <h2>Results</h2>
+      <p>Most listened song:
+      ${song.artist} - ${song.title}
+      </p>
+      <p>Most listened artist: ${artist}</p>
+    `;
   });
 };
