@@ -26,10 +26,7 @@ export function getMostListenedArtist(events) {
   for (const event of events) {
     const song = getSong(event.song_id);
 
-    ```
-counts[song.artist] =
-  (counts[song.artist] || 0) + 1;
-```;
+    counts[song.artist] = (counts[song.artist] || 0) + 1;
   }
 
   let winner = null;
