@@ -5,7 +5,17 @@
 // You can't open the index.html file using a file:// URL.
 import { getUserIDs, getListenEvents } from "./data.mjs";
 
-import { getMostListenedSong, getMostListenedArtist } from "./analysis.js";
+import {
+  getMostListenedSong,
+  getMostListenedArtist,
+  getMostListenedSongByTime,
+  getMostListenedArtistByTime,
+  getFridayNightSong,
+  getFridayNightSongByTime,
+  getLongestStreak,
+  getEveryDaySongs,
+  getTopGenres,
+} from "./analysis.mjs";
 
 window.onload = () => {
   const select = document.getElementById("user-select");
