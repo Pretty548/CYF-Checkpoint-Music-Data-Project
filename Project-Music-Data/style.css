@@ -1,0 +1,26 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+}
+
+main {
+  max-width: 800px;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+label,
+select {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+#results {
+  margin-top: 2rem;
+}
+
+p {
+  margin: 0.5rem 0;
+}
