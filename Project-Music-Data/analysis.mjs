@@ -42,7 +42,27 @@ export function getMostListenedArtist(events) {
   return winner;
 }
 
-export function getMostListenedSongByTime(events) {}
+export function getMostListenedSongByTime(events) {
+  const times = {};
+
+  for (const event of events) {
+    const song = getSong(event.song_id);
+
+    times[event.song_id] = (times[event.song_id] || 0) + song.duration_seconds;
+  }
+
+  let winner = null;
+  let max = 0;
+
+  for (const [songId, totalTime] of Object.entries(times)) {
+    if (totalTime > max) {
+      max = totalTime;
+      winner = songId;
+    }
+  }
+
+  return getSong(winner);
+}
 
 export function getFridayNightSong(events) {}
 
