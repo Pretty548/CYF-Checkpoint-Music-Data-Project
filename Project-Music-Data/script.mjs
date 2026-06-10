@@ -43,13 +43,43 @@ window.onload = () => {
 
     const song = getMostListenedSong(events);
     const artist = getMostListenedArtist(events);
+    const songByTime = getMostListenedSongByTime(events);
+    const artistByTime = getMostListenedArtistByTime(events);
+    const fridaySong = getFridayNightSong(events);
+    const fridaySongByTime = getFridayNightSongByTime(events);
+    const streak = getLongestStreak(events);
+    const everyDaySongs = getEveryDaySongs(events);
+    const genres = getTopGenres(events);
 
     results.innerHTML = `
-      <h2>Results</h2>
-      <p>Most listened song:
-      ${song.artist} - ${song.title}
-      </p>
-      <p>Most listened artist: ${artist}</p>
-    `;
+  <h2>Results</h2>
+
+  <p><strong>Most listened song:</strong>
+  ${song.artist} - ${song.title}</p>
+
+  <p><strong>Most listened artist:</strong>
+  ${artist}</p>
+
+  <p><strong>Most listened song by time:</strong>
+  ${songByTime.artist} - ${songByTime.title}</p>
+
+  <p><strong>Most listened artist by time:</strong>
+  ${artistByTime}</p>
+
+  <p><strong>Friday night favourite:</strong>
+  ${fridaySong.artist} - ${fridaySong.title}</p>
+
+  <p><strong>Friday night favourite by time:</strong>
+  ${fridaySongByTime.artist} - ${fridaySongByTime.title}</p>
+
+  <p><strong>Longest streak:</strong>
+  ${streak} days</p>
+
+  <p><strong>Every day songs:</strong>
+  ${everyDaySongs.join(", ")}</p>
+
+  <p><strong>Top genres:</strong>
+  ${genres.join(", ")}</p>
+`;
   });
 };
