@@ -109,7 +109,7 @@ export function getFridayNightSong(events) {
     }
   }
 
-  return getSong(winner);
+  return winner ? getSong(winner) : null;
 }
 
 export function getFridayNightSongByTime(events) {
