@@ -34,7 +34,7 @@ window.onload = () => {
   select.addEventListener("change", (event) => {
     const userID = event.target.value;
 
-    const events = getListenEvents(userID);
+    const events = getListenEvents(userID) || [];
 
     if (events.length === 0) {
       results.innerHTML = "<p>This user didn't listen to any songs.</p>";
@@ -51,9 +51,15 @@ window.onload = () => {
     const everyDaySongs = getEveryDaySongs(events);
     const genres = getTopGenres(events);
 
-    results.innerHTML = `
-  <h2>Results</h2>
+    console.log("song", song);
+    console.log("artist", artist);
+    console.log("songByTime", songByTime);
+    console.log("artistByTime", artistByTime);
 
+    console.log("fridaySong", fridaySong);
+    console.log("fridaySongByTime", fridaySongByTime);
+
+    results.innerHTML = `
   <p><strong>Most listened song:</strong>
   ${song.artist} - ${song.title}</p>
 
@@ -66,20 +72,40 @@ window.onload = () => {
   <p><strong>Most listened artist by time:</strong>
   ${artistByTime}</p>
 
-  <p><strong>Friday night favourite:</strong>
-  ${fridaySong.artist} - ${fridaySong.title}</p>
+  ${
+    fridaySong
+      ? `<p><strong>Friday night favourite:</strong>
+         ${fridaySong.artist} - ${fridaySong.title}</p>`
+      : ""
+  }
 
-  <p><strong>Friday night favourite by time:</strong>
-  ${fridaySongByTime.artist} - ${fridaySongByTime.title}</p>
+  ${
+    fridaySongByTime
+      ? `<p><strong>Friday night favourite by time:</strong>
+         ${fridaySongByTime.artist} - ${fridaySongByTime.title}</p>`
+      : ""
+  }
 
-  <p><strong>Longest streak:</strong>
-  ${streak} days</p>
+  ${
+    streak
+      ? `<p><strong>Longest streak:</strong>
+         ${streak.song.artist} - ${streak.song.title} (length: ${streak.streak})</p>`
+      : ""
+  }
 
-  <p><strong>Every day songs:</strong>
-  ${everyDaySongs.join(", ")}</p>
+  ${
+    everyDaySongs && everyDaySongs.length > 0
+      ? `<p><strong>Every day songs:</strong>
+         ${everyDaySongs.join(", ")}</p>`
+      : ""
+  }
 
-  <p><strong>Top genres:</strong>
-  ${genres.join(", ")}</p>
-`;
+  ${
+    genres && genres.length > 0
+      ? `<p><strong>Top genres:</strong>
+         ${genres.join(", ")}</p>`
+      : ""
+  }
+  `;
   });
 };
